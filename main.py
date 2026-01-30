@@ -1,0 +1,38 @@
+import sqlite3
+
+def run_sql(db_path: str, sql: str):
+    try:
+        conn = sqlite3.connect(db_path)
+        cursor = conn.cursor()
+
+        cursor.executescript(sql)
+
+        if sql.strip().lower().startswith("select"):
+            result = cursor.fetchall()
+        else:
+            conn.commit()
+            result = "Query executed successfully"
+
+        cursor.close()
+        conn.close()
+        return result
+
+    except sqlite3.Error as e:
+        return f"SQL error: {e}"
+
+
+def read_multiline_sql():
+    print("Enter SQL code (finish with empty line):")
+    lines = []
+    while True:
+        line = input()
+        if line.strip() == "":
+            break
+        lines.append(line)
+    return "\n".join(lines)
+
+
+if __name__ == "__main__":
+    sql_code = read_multiline_sql()
+    result = run_sql("database.db", sql_code)
+    print(result)
