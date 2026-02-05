@@ -3,7 +3,7 @@ from datetime import date
 
 
 def insert_sample_data():
-    conn = sqlite3.connect('students.db')
+    conn = sqlite3.connect('../database.db')
     cursor = conn.cursor()
 
     print("Начало заполнения базы данных примерами...")

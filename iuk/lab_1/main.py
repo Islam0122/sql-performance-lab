@@ -2,7 +2,7 @@ import sqlite3
 
 def create_database():
     # Подключение к базе данных (если файла нет, он будет создан)
-    conn = sqlite3.connect('students.db')
+    conn = sqlite3.connect('../database.db')
     cursor = conn.cursor()
     
     # Создание таблицы Специальность
