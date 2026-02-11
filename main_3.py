@@ -112,3 +112,58 @@ for char in text.lower():
         result += char  # если символа нет в словаре — оставляем как есть
 
 print("В русской раскладке это будет:", result)
+balance = 10000
+
+while True:
+    print("\nВаш текущий баланс:", balance)
+    print("Выберите действие:")
+    print("1 - Проверить баланс")
+    print("2 - Снять деньги")
+    print("3 - Пополнить счёт")
+    print("4 - Выход")
+
+    choice = input("Введите номер действия: ")
+
+    if choice == "1":
+        print("Ваш баланс:", balance)
+
+    elif choice == "2":
+        amount = input("Введите сумму для снятия: ")
+
+        if not amount.isdigit():
+            print("Ошибка! Введите положительное число.")
+            continue
+
+        amount = int(amount)
+
+        if amount <= 0:
+            print("Сумма должна быть больше 0.")
+        elif amount > balance:
+            print("Недостаточно средств.")
+        else:
+            balance -= amount
+            print("Вы успешно сняли", amount)
+            print("Новый баланс:", balance)
+
+    elif choice == "3":
+        amount = input("Введите сумму для пополнения: ")
+
+        if not amount.isdigit():
+            print("Ошибка! Введите положительное число.")
+            continue
+
+        amount = int(amount)
+
+        if amount <= 0:
+            print("Сумма должна быть больше 0.")
+        else:
+            balance += amount
+            print("Счёт пополнен на", amount)
+            print("Новый баланс:", balance)
+
+    elif choice == "4":
+        print("Спасибо за использование банкомата!")
+        break
+
+    else:
+        print("Неверный пункт меню. Попробуйте снова.")
