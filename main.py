@@ -36,3 +36,31 @@ if __name__ == "__main__":
     sql_code = read_multiline_sql()
     result = run_sql("database.db", sql_code)
     print(result)
+
+text = input("Введи текст: ").lower()
+
+# Разбиваем текст на слова
+words = text.split()
+
+# Множество уникальных слов
+unique_words = set(words)
+
+print("\nУникальные слова:")
+for word in unique_words:
+    print(word)
+
+print("\nКоличество уникальных слов:", len(unique_words))
+
+# Поиск повторяющихся слов
+repeated = set()
+seen = set()
+
+for word in words:
+    if word in seen:
+        repeated.add(word)
+    else:
+        seen.add(word)
+
+print("\nПовторяющиеся слова:")
+for word in repeated:
+    print(word)
