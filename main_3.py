@@ -214,3 +214,90 @@ while True:
 
     else:
         print("Неверный выбор")
+# main.py
+
+# Хранилище данных
+tasks_list = []   # список задач (порядок)
+tasks_set = set() # уникальные задачи (быстрая проверка)
+
+
+# -------- Бизнес логика --------
+def add_task(task: str):
+    task = task.strip().lower()
+
+    if not task:
+        print("❌ Задача не может быть пустой")
+        return
+
+    if task in tasks_set:
+        print("⚠️ Такая задача уже существует")
+        return
+
+    tasks_list.append(task)
+    tasks_set.add(task)
+    print(f"✅ Задача '{task}' добавлена")
+
+
+def remove_task(task: str):
+    task = task.strip().lower()
+
+    if task not in tasks_set:
+        print("❌ Задача не найдена")
+        return
+
+    tasks_list.remove(task)
+    tasks_set.remove(task)
+    print(f"🗑 Задача '{task}' удалена")
+
+
+def show_tasks():
+    if not tasks_list:
+        print("📭 Список задач пуст")
+        return
+
+    print("\n📋 Список задач:")
+    for i, task in enumerate(tasks_list, start=1):
+        print(f"{i}. {task}")
+
+
+def unique_count():
+    print(f"🔢 Уникальных задач: {len(tasks_set)}")
+
+
+# -------- Главный запуск (main) --------
+def main():
+    while True:
+        print("\n=== МЕНЮ ===")
+        print("1 - Добавить задачу")
+        print("2 - Удалить задачу")
+        print("3 - Показать задачи")
+        print("4 - Кол-во уникальных задач (set)")
+        print("5 - Выход")
+
+        choice = input("Выбери действие: ")
+
+        if choice == "1":
+            task = input("Введите задачу: ")
+            add_task(task)
+
+        elif choice == "2":
+            task = input("Введите задачу для удаления: ")
+            remove_task(task)
+
+        elif choice == "3":
+            show_tasks()
+
+        elif choice == "4":
+            unique_count()
+
+        elif choice == "5":
+            print("Выход из программы...")
+            break
+
+        else:
+            print("❌ Неверный выбор")
+
+
+# Точка входа (как в реальных проектах)
+if __name__ == "__main__":
+    main()
